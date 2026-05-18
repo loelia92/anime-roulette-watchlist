@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
+
 const props = defineProps({
   anime: {
     type: Object,
