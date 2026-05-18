@@ -15,7 +15,6 @@ const {
   isInWatchlist,
   removeFromWatchlist,
 } = useAnimeRoulette()
-
 const spinDisabled = computed(() => loading.value || cooldownLeft.value > 0)
 
 const spinLabel = computed(() => {
