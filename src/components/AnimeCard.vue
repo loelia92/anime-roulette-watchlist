@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
+
 const props = defineProps({
   anime: {
     type: Object,
@@ -57,15 +58,15 @@ watch(
 
 <template>
   <section
-    class="rounded-3xl border border-slate-700/70 bg-slate-900/60 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-sm"
+    class="rounded-3xl border border-fuchsia-400/50 bg-fuchsia-950/30 p-5 shadow-[0_0_35px_rgba(232,121,249,0.35)] backdrop-blur-md"
   >
     <div
       v-if="props.loading"
       class="space-y-4"
     >
-      <div class="flex items-center gap-3 text-cyan-300">
+      <div class="flex items-center gap-3 text-green-300">
         <div
-          class="h-5 w-5 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent"
+          class="h-5 w-5 animate-spin rounded-full border-2 border-green-400 border-t-transparent"
         ></div>
         <p class="font-semibold tracking-wide">Shuffling anime reels...</p>
       </div>
@@ -83,45 +84,45 @@ watch(
       class="rounded-2xl border border-red-300/50 bg-red-500/10 p-4 text-red-100"
     >
       <h3 class="text-lg font-semibold">Spin failed</h3>
-      <p class="mt-2 text-sm text-red-100/90">{{ error }}</p>
+      <p class="mt-2 text-sm text-orange-300/90">{{ error }}</p>
     </div>
 
     <div
       v-else-if="anime"
       class="space-y-4"
     >
-      <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-800/60">
+      <div class="bg-clear-500/20 overflow-hidden rounded-2xl border border-green-300/80">
         <img
           v-if="animeImage"
           :src="animeImage"
           :alt="anime.title"
-          class="h-80 w-full bg-slate-900/50 object-contain"
+          class="h-80 w-full bg-pink-900/50 object-contain"
           loading="lazy"
         />
         <div
           v-else
-          class="flex h-80 items-center justify-center bg-slate-800 text-slate-300"
+          class="flex h-80 items-center justify-center bg-pink-800 text-orange-300"
         >
           No poster available
         </div>
       </div>
 
       <div>
-        <h2 class="text-2xl font-black text-white">{{ anime.title }}</h2>
-        <p class="mt-1 text-sm text-slate-300">
-          Score: <span class="font-semibold text-amber-300">{{ anime.score ?? 'N/A' }}</span> ·
+        <h2 class="text-2xl font-black text-black">{{ anime.title }}</h2>
+        <p class="mt-1 text-sm text-orange-300">
+          Score: <span class="font-semibold text-green-300">{{ anime.score ?? 'N/A' }}</span> ·
           Episodes:
           <span class="font-semibold text-cyan-300">{{ anime.episodes ?? 'Unknown' }}</span> ·
           Rating: <span class="font-semibold text-pink-300">{{ anime.rating || 'Unknown' }}</span>
         </p>
       </div>
 
-      <p class="text-sm leading-relaxed text-slate-200">
+      <p class="text-sm leading-relaxed text-orange-300">
         {{ visibleSynopsis }}
         <button
           v-if="needsTruncation"
           type="button"
-          class="ml-2 text-cyan-300 underline-offset-4 hover:underline"
+          class="ml-2 text-green-300 underline-offset-4 hover:underline"
           @click="synopsisExpanded = !synopsisExpanded"
         >
           {{ synopsisExpanded ? 'Show less' : 'Read more' }}
@@ -131,7 +132,7 @@ watch(
       <div class="flex flex-wrap gap-3">
         <button
           type="button"
-          class="rounded-full border border-cyan-300/60 bg-cyan-400/15 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-400/25 disabled:cursor-not-allowed disabled:opacity-50"
+          class="rounded-full border border-green-300/60 bg-pink-500/20 px-4 py-2 text-sm font-semibold text-black transition hover:bg-green-400 disabled:cursor-not-allowed disabled:opacity-50"
           :disabled="inWatchlist"
           @click="emit('add', anime)"
         >
@@ -142,7 +143,7 @@ watch(
           :href="anime.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40"
+          class="hover:border-/40 rounded-full border border-green-500 px-4 py-2 text-sm font-semibold text-black transition"
         >
           Open on MAL
         </a>
@@ -151,7 +152,7 @@ watch(
 
     <div
       v-else
-      class="rounded-2xl border border-slate-700/60 bg-slate-800/50 p-6 text-center text-slate-300"
+      class="rounded-2xl border border-green-400/60 bg-pink-500/20 p-6 text-center text-orange-300"
     >
       Pull the lever to request your first random anime.
     </div>
